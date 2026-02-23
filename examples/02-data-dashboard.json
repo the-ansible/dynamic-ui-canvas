@@ -1,0 +1,194 @@
+{
+  "title": "Sales Dashboard",
+  "components": [
+    {
+      "id": "dashboard-root",
+      "type": "container",
+      "props": { "direction": "column", "gap": "24px" },
+      "children": [
+        {
+          "id": "dashboard-header",
+          "type": "heading",
+          "props": { "content": "Sales Dashboard — Q4 2025", "level": 1 }
+        },
+        {
+          "id": "kpi-row",
+          "type": "grid",
+          "props": { "columns": 4, "gap": "16px" },
+          "children": [
+            {
+              "id": "kpi-revenue",
+              "type": "card",
+              "props": { "title": "Total Revenue", "elevation": 1 },
+              "children": [
+                {
+                  "id": "revenue-value",
+                  "type": "text",
+                  "props": { "content": "$2,847,500", "weight": "bold" },
+                  "style": { "fontSize": "28px", "color": "#1976d2" }
+                },
+                {
+                  "id": "revenue-badge",
+                  "type": "badge",
+                  "props": { "label": "+12.3%", "variant": "success", "size": "small" }
+                }
+              ]
+            },
+            {
+              "id": "kpi-orders",
+              "type": "card",
+              "props": { "title": "Orders", "elevation": 1 },
+              "children": [
+                {
+                  "id": "orders-value",
+                  "type": "text",
+                  "props": { "content": "1,284", "weight": "bold" },
+                  "style": { "fontSize": "28px", "color": "#388e3c" }
+                },
+                {
+                  "id": "orders-badge",
+                  "type": "badge",
+                  "props": { "label": "+8.7%", "variant": "success", "size": "small" }
+                }
+              ]
+            },
+            {
+              "id": "kpi-customers",
+              "type": "card",
+              "props": { "title": "New Customers", "elevation": 1 },
+              "children": [
+                {
+                  "id": "customers-value",
+                  "type": "text",
+                  "props": { "content": "342", "weight": "bold" },
+                  "style": { "fontSize": "28px", "color": "#f57c00" }
+                },
+                {
+                  "id": "customers-badge",
+                  "type": "badge",
+                  "props": { "label": "-2.1%", "variant": "error", "size": "small" }
+                }
+              ]
+            },
+            {
+              "id": "kpi-aov",
+              "type": "card",
+              "props": { "title": "Avg Order Value", "elevation": 1 },
+              "children": [
+                {
+                  "id": "aov-value",
+                  "type": "text",
+                  "props": { "content": "$2,217", "weight": "bold" },
+                  "style": { "fontSize": "28px", "color": "#7b1fa2" }
+                },
+                {
+                  "id": "aov-badge",
+                  "type": "badge",
+                  "props": { "label": "+3.4%", "variant": "success", "size": "small" }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "charts-row",
+          "type": "grid",
+          "props": { "columns": 2, "gap": "16px" },
+          "children": [
+            {
+              "id": "revenue-chart-card",
+              "type": "card",
+              "props": { "title": "Monthly Revenue", "elevation": 1 },
+              "children": [
+                {
+                  "id": "revenue-chart",
+                  "type": "chart",
+                  "props": {
+                    "chartType": "area",
+                    "data": {
+                      "labels": ["Oct 1", "Oct 8", "Oct 15", "Oct 22", "Nov 1", "Nov 8", "Nov 15", "Nov 22", "Dec 1", "Dec 8", "Dec 15", "Dec 22"],
+                      "datasets": [
+                        {
+                          "label": "Revenue",
+                          "data": [185000, 210000, 195000, 240000, 225000, 260000, 235000, 280000, 250000, 295000, 270000, 310000],
+                          "borderColor": "#1976d2",
+                          "backgroundColor": "#1976d233",
+                          "fill": true
+                        }
+                      ]
+                    },
+                    "options": {
+                      "responsive": true,
+                      "plugins": { "legend": { "display": false } },
+                      "yAxis": { "tickFormat": "currency" }
+                    },
+                    "height": "300px"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "category-chart-card",
+              "type": "card",
+              "props": { "title": "Sales by Category", "elevation": 1 },
+              "children": [
+                {
+                  "id": "category-chart",
+                  "type": "chart",
+                  "props": {
+                    "chartType": "doughnut",
+                    "data": {
+                      "labels": ["Electronics", "Clothing", "Home & Garden", "Sports", "Books"],
+                      "datasets": [
+                        {
+                          "label": "Category Sales",
+                          "data": [35, 25, 20, 12, 8],
+                          "backgroundColor": ["#1976d2", "#d32f2f", "#388e3c", "#f57c00", "#7b1fa2"]
+                        }
+                      ]
+                    },
+                    "options": {
+                      "responsive": true,
+                      "plugins": {
+                        "legend": { "display": true, "position": "right" }
+                      }
+                    },
+                    "height": "300px"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bar-chart-card",
+          "type": "card",
+          "props": { "title": "Revenue vs Expenses vs Profit", "elevation": 1 },
+          "children": [
+            {
+              "id": "comparison-bar-chart",
+              "type": "chart",
+              "props": {
+                "chartType": "bar",
+                "data": {
+                  "labels": ["October", "November", "December"],
+                  "datasets": [
+                    { "label": "Revenue", "data": [830000, 1000000, 1125000], "backgroundColor": "#1976d2" },
+                    { "label": "Expenses", "data": [620000, 710000, 780000], "backgroundColor": "#d32f2f" },
+                    { "label": "Profit", "data": [210000, 290000, 345000], "backgroundColor": "#388e3c" }
+                  ]
+                },
+                "options": {
+                  "responsive": true,
+                  "yAxis": { "tickFormat": "currency" },
+                  "plugins": { "legend": { "display": true, "position": "top" } }
+                },
+                "height": "350px"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

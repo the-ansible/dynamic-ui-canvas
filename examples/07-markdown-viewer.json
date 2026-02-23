@@ -1,0 +1,137 @@
+{
+  "title": "API Documentation Viewer",
+  "components": [
+    {
+      "id": "doc-root",
+      "type": "container",
+      "props": { "direction": "column", "gap": "16px" },
+      "children": [
+        {
+          "id": "doc-header",
+          "type": "container",
+          "props": { "direction": "row", "justifyContent": "start", "alignItems": "center", "gap": "16px" },
+          "children": [
+            {
+              "id": "doc-title",
+              "type": "heading",
+              "props": { "content": "Canvas API Reference", "level": 1 }
+            },
+            {
+              "id": "doc-version",
+              "type": "badge",
+              "props": { "label": "v2.1.0", "variant": "info", "shape": "pill" }
+            },
+            {
+              "id": "doc-status",
+              "type": "badge",
+              "props": { "label": "Stable", "variant": "success", "shape": "pill" }
+            }
+          ]
+        },
+        {
+          "id": "doc-layout",
+          "type": "grid",
+          "props": { "columns": 4, "gap": "24px" },
+          "children": [
+            {
+              "id": "doc-sidebar",
+              "type": "container",
+              "props": { "direction": "column", "gap": "8px" },
+              "style": { "gridColumn": "span 1" },
+              "children": [
+                {
+                  "id": "sidebar-heading",
+                  "type": "heading",
+                  "props": { "content": "Navigation", "level": 4 }
+                },
+                {
+                  "id": "nav-tree",
+                  "type": "tree",
+                  "props": {
+                    "defaultExpandDepth": 1,
+                    "showLines": true,
+                    "nodes": [
+                      {
+                        "id": "nav-intro",
+                        "label": "Introduction",
+                        "children": []
+                      },
+                      {
+                        "id": "nav-auth",
+                        "label": "Authentication",
+                        "children": [
+                          { "id": "nav-auth-keys", "label": "API Keys", "children": [] },
+                          { "id": "nav-auth-oauth", "label": "OAuth 2.0", "children": [] }
+                        ]
+                      },
+                      {
+                        "id": "nav-endpoints",
+                        "label": "Endpoints",
+                        "children": [
+                          { "id": "nav-canvases", "label": "Canvases", "children": [] },
+                          { "id": "nav-components", "label": "Components", "children": [] },
+                          { "id": "nav-events", "label": "Events", "children": [] }
+                        ]
+                      },
+                      {
+                        "id": "nav-errors",
+                        "label": "Error Handling",
+                        "children": []
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "doc-content",
+              "type": "container",
+              "props": { "direction": "column", "gap": "24px" },
+              "style": { "gridColumn": "span 3" },
+              "children": [
+                {
+                  "id": "doc-intro-section",
+                  "type": "markdown",
+                  "props": {
+                    "content": "## Introduction\n\nThe Canvas API allows you to programmatically create, manage, and update dynamic user interfaces. Canvases are composed of **component trees** described by JSON descriptors.\n\n### Base URL\n\n```\nhttps://api.canvas.example.com/v2\n```\n\n### Quick Start\n\n1. Obtain an API key from the [developer portal](https://dev.canvas.example.com)\n2. Create your first canvas with a `POST /api/canvases` request\n3. Add components to your canvas using the component API\n4. Connect a WebSocket for real-time updates\n\n> **Note:** All API responses use JSON format. Set `Content-Type: application/json` for request bodies."
+                  }
+                },
+                {
+                  "id": "doc-divider-1",
+                  "type": "divider",
+                  "props": { "orientation": "horizontal" }
+                },
+                {
+                  "id": "doc-endpoint-section",
+                  "type": "markdown",
+                  "props": {
+                    "content": "## Create a Canvas\n\n`POST /api/canvases`\n\nCreates a new canvas with the specified descriptor.\n\n### Request Body\n\n| Field | Type | Required | Description |\n|-------|------|----------|-------------|\n| `title` | string | Yes | Canvas display title |\n| `components` | array | Yes | Array of component nodes |\n| `metadata` | object | No | Arbitrary metadata |\n\n### Response\n\nReturns the created canvas object with generated `id` and timestamps."
+                  }
+                },
+                {
+                  "id": "doc-code-example",
+                  "type": "code",
+                  "props": {
+                    "language": "json",
+                    "lineNumbers": true,
+                    "copyable": true,
+                    "content": "{\n  \"title\": \"My Dashboard\",\n  \"components\": [\n    {\n      \"id\": \"header\",\n      \"type\": \"heading\",\n      \"props\": {\n        \"content\": \"Welcome\",\n        \"level\": 1\n      }\n    },\n    {\n      \"id\": \"chart-1\",\n      \"type\": \"chart\",\n      \"props\": {\n        \"chartType\": \"line\",\n        \"data\": {\n          \"labels\": [\"Jan\", \"Feb\", \"Mar\"],\n          \"datasets\": [{\n            \"label\": \"Sales\",\n            \"data\": [100, 200, 150]\n          }]\n        }\n      }\n    }\n  ]\n}"
+                  }
+                },
+                {
+                  "id": "doc-callout",
+                  "type": "callout",
+                  "props": {
+                    "variant": "warning",
+                    "title": "Rate Limiting",
+                    "content": "The API enforces a rate limit of 100 requests per minute per API key. Exceeding this limit returns HTTP 429 Too Many Requests."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,282 @@
+{
+  "title": "Cloud Provider Comparison",
+  "components": [
+    {
+      "id": "comparison-root",
+      "type": "container",
+      "props": { "direction": "column", "gap": "24px" },
+      "children": [
+        {
+          "id": "comparison-heading",
+          "type": "heading",
+          "props": { "content": "Cloud Provider Comparison", "level": 1 }
+        },
+        {
+          "id": "comparison-description",
+          "type": "text",
+          "props": { "content": "Side-by-side comparison of AWS, Google Cloud, and Azure for the proposed infrastructure migration.", "variant": "body1" }
+        },
+        {
+          "id": "cost-section",
+          "type": "container",
+          "props": { "direction": "column", "gap": "12px" },
+          "children": [
+            {
+              "id": "cost-heading",
+              "type": "heading",
+              "props": { "content": "Monthly Cost Estimate", "level": 3 }
+            },
+            {
+              "id": "cost-comparison",
+              "type": "grid",
+              "props": { "columns": 3, "gap": "16px" },
+              "children": [
+                {
+                  "id": "aws-cost-card",
+                  "type": "card",
+                  "props": { "title": "AWS", "elevation": 2 },
+                  "style": { "borderTop": "4px solid #ff9900" },
+                  "children": [
+                    {
+                      "id": "aws-cost-container",
+                      "type": "container",
+                      "props": { "direction": "column", "gap": "12px", "alignItems": "center" },
+                      "children": [
+                        {
+                          "id": "aws-total",
+                          "type": "text",
+                          "props": { "content": "$4,280 / month", "weight": "bold" },
+                          "style": { "fontSize": "24px", "color": "#ff9900" }
+                        },
+                        {
+                          "id": "aws-breakdown",
+                          "type": "key-value",
+                          "props": {
+                            "layout": "vertical",
+                            "divider": true,
+                            "pairs": [
+                              { "key": "Compute (EC2)", "value": "$2,100" },
+                              { "key": "Database (RDS)", "value": "$890" },
+                              { "key": "Storage (S3)", "value": "$340" },
+                              { "key": "Networking", "value": "$520" },
+                              { "key": "Other Services", "value": "$430" }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "gcp-cost-card",
+                  "type": "card",
+                  "props": { "title": "Google Cloud", "elevation": 2 },
+                  "style": { "borderTop": "4px solid #4285f4" },
+                  "children": [
+                    {
+                      "id": "gcp-cost-container",
+                      "type": "container",
+                      "props": { "direction": "column", "gap": "12px", "alignItems": "center" },
+                      "children": [
+                        {
+                          "id": "gcp-total",
+                          "type": "text",
+                          "props": { "content": "$3,950 / month", "weight": "bold" },
+                          "style": { "fontSize": "24px", "color": "#4285f4" }
+                        },
+                        {
+                          "id": "gcp-breakdown",
+                          "type": "key-value",
+                          "props": {
+                            "layout": "vertical",
+                            "divider": true,
+                            "pairs": [
+                              { "key": "Compute (GCE)", "value": "$1,890" },
+                              { "key": "Database (Cloud SQL)", "value": "$820" },
+                              { "key": "Storage (GCS)", "value": "$310" },
+                              { "key": "Networking", "value": "$480" },
+                              { "key": "Other Services", "value": "$450" }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "azure-cost-card",
+                  "type": "card",
+                  "props": { "title": "Azure", "elevation": 2 },
+                  "style": { "borderTop": "4px solid #0078d4" },
+                  "children": [
+                    {
+                      "id": "azure-cost-container",
+                      "type": "container",
+                      "props": { "direction": "column", "gap": "12px", "alignItems": "center" },
+                      "children": [
+                        {
+                          "id": "azure-total",
+                          "type": "text",
+                          "props": { "content": "$4,120 / month", "weight": "bold" },
+                          "style": { "fontSize": "24px", "color": "#0078d4" }
+                        },
+                        {
+                          "id": "azure-breakdown",
+                          "type": "key-value",
+                          "props": {
+                            "layout": "vertical",
+                            "divider": true,
+                            "pairs": [
+                              { "key": "Compute (VMs)", "value": "$2,010" },
+                              { "key": "Database (SQL DB)", "value": "$860" },
+                              { "key": "Storage (Blob)", "value": "$320" },
+                              { "key": "Networking", "value": "$510" },
+                              { "key": "Other Services", "value": "$420" }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cost-chart-section",
+          "type": "card",
+          "props": { "title": "Cost Breakdown Comparison", "elevation": 1 },
+          "children": [
+            {
+              "id": "cost-bar-chart",
+              "type": "chart",
+              "props": {
+                "chartType": "bar",
+                "data": {
+                  "labels": ["Compute", "Database", "Storage", "Networking", "Other"],
+                  "datasets": [
+                    { "label": "AWS", "data": [2100, 890, 340, 520, 430], "backgroundColor": "#ff9900" },
+                    { "label": "Google Cloud", "data": [1890, 820, 310, 480, 450], "backgroundColor": "#4285f4" },
+                    { "label": "Azure", "data": [2010, 860, 320, 510, 420], "backgroundColor": "#0078d4" }
+                  ]
+                },
+                "options": {
+                  "responsive": true,
+                  "yAxis": { "label": "Monthly Cost ($)", "tickFormat": "currency" },
+                  "plugins": { "legend": { "display": true, "position": "top" } }
+                },
+                "height": "350px"
+              }
+            }
+          ]
+        },
+        {
+          "id": "features-section",
+          "type": "container",
+          "props": { "direction": "column", "gap": "12px" },
+          "children": [
+            {
+              "id": "features-heading",
+              "type": "heading",
+              "props": { "content": "Feature Comparison", "level": 3 }
+            },
+            {
+              "id": "features-table",
+              "type": "table",
+              "props": {
+                "sortable": true,
+                "columns": [
+                  { "key": "feature", "label": "Feature", "width": "200px" },
+                  { "key": "aws", "label": "AWS", "width": "180px" },
+                  { "key": "gcp", "label": "Google Cloud", "width": "180px" },
+                  { "key": "azure", "label": "Azure", "width": "180px" },
+                  { "key": "importance", "label": "Importance", "width": "100px" }
+                ],
+                "data": [
+                  { "feature": "Kubernetes Support", "aws": "EKS (Mature)", "gcp": "GKE (Best-in-class)", "azure": "AKS (Good)", "importance": "Critical" },
+                  { "feature": "Serverless Functions", "aws": "Lambda (Leader)", "gcp": "Cloud Functions", "azure": "Azure Functions", "importance": "High" },
+                  { "feature": "CDN", "aws": "CloudFront", "gcp": "Cloud CDN", "azure": "Azure CDN", "importance": "Medium" },
+                  { "feature": "ML/AI Services", "aws": "SageMaker", "gcp": "Vertex AI (Leader)", "azure": "Azure ML", "importance": "High" },
+                  { "feature": "Global Regions", "aws": "33 regions", "gcp": "40 regions", "azure": "60+ regions", "importance": "Medium" },
+                  { "feature": "SLA Guarantee", "aws": "99.99%", "gcp": "99.95%", "azure": "99.99%", "importance": "Critical" },
+                  { "feature": "Free Tier", "aws": "12 months", "gcp": "Always Free + $300", "azure": "12 months + $200", "importance": "Low" },
+                  { "feature": "Sustained Use Discounts", "aws": "Reserved Only", "gcp": "Automatic", "azure": "Reserved Only", "importance": "High" }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "performance-section",
+          "type": "card",
+          "props": { "title": "Benchmark Performance (Higher is Better)", "elevation": 1 },
+          "children": [
+            {
+              "id": "perf-scatter-chart",
+              "type": "chart",
+              "props": {
+                "chartType": "scatter",
+                "data": {
+                  "labels": [],
+                  "datasets": [
+                    {
+                      "label": "AWS",
+                      "data": [{ "x": 4280, "y": 92 }, { "x": 4100, "y": 89 }, { "x": 4500, "y": 95 }],
+                      "backgroundColor": "#ff9900"
+                    },
+                    {
+                      "label": "Google Cloud",
+                      "data": [{ "x": 3950, "y": 94 }, { "x": 3800, "y": 91 }, { "x": 4100, "y": 96 }],
+                      "backgroundColor": "#4285f4"
+                    },
+                    {
+                      "label": "Azure",
+                      "data": [{ "x": 4120, "y": 90 }, { "x": 3900, "y": 87 }, { "x": 4300, "y": 93 }],
+                      "backgroundColor": "#0078d4"
+                    }
+                  ]
+                },
+                "options": {
+                  "responsive": true,
+                  "xAxis": { "label": "Monthly Cost ($)", "tickFormat": "currency" },
+                  "yAxis": { "label": "Performance Score" },
+                  "plugins": { "legend": { "display": true, "position": "top" } }
+                },
+                "height": "300px"
+              }
+            }
+          ]
+        },
+        {
+          "id": "recommendation",
+          "type": "callout",
+          "props": {
+            "variant": "success",
+            "title": "Recommendation",
+            "content": "Based on cost analysis, feature requirements, and performance benchmarks, **Google Cloud Platform** offers the best value for the proposed migration. Key advantages include automatic sustained use discounts, superior Kubernetes support (GKE), and leading ML/AI capabilities at a 7.7% lower monthly cost than AWS."
+          }
+        },
+        {
+          "id": "comparison-actions",
+          "type": "container",
+          "props": { "direction": "row", "gap": "12px", "justifyContent": "end" },
+          "children": [
+            {
+              "id": "download-btn",
+              "type": "button",
+              "props": { "label": "Download Full Report", "variant": "outline" },
+              "events": [{ "type": "click", "action": { "type": "callback", "callbackId": "downloadReport" } }]
+            },
+            {
+              "id": "proceed-btn",
+              "type": "button",
+              "props": { "label": "Proceed with GCP", "variant": "primary" },
+              "events": [{ "type": "click", "action": { "type": "callback", "callbackId": "selectProvider", "payload": { "provider": "gcp" } } }]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "title": "Project Overview",
+  "components": [
+    {
+      "id": "overview-root",
+      "type": "container",
+      "props": { "direction": "column", "gap": "24px" },
+      "children": [
+        {
+          "id": "overview-heading",
+          "type": "heading",
+          "props": { "content": "Project Alpha — Sprint 14 Overview", "level": 1 }
+        },
+        {
+          "id": "sprint-progress",
+          "type": "container",
+          "props": { "direction": "column", "gap": "8px" },
+          "children": [
+            {
+              "id": "sprint-label",
+              "type": "text",
+              "props": { "content": "Sprint Progress: 73% complete (11 of 15 stories)", "weight": "medium" }
+            },
+            {
+              "id": "sprint-bar",
+              "type": "progress",
+              "props": { "value": 73, "max": 100, "variant": "info", "showLabel": true, "labelFormat": "percent", "animated": true }
+            }
+          ]
+        },
+        {
+          "id": "top-row",
+          "type": "grid",
+          "props": { "columns": 3, "gap": "16px" },
+          "children": [
+            {
+              "id": "velocity-card",
+              "type": "card",
+              "props": { "title": "Team Velocity", "elevation": 1 },
+              "children": [
+                {
+                  "id": "velocity-chart",
+                  "type": "chart",
+                  "props": {
+                    "chartType": "line",
+                    "data": {
+                      "labels": ["Sprint 9", "Sprint 10", "Sprint 11", "Sprint 12", "Sprint 13", "Sprint 14"],
+                      "datasets": [
+                        {
+                          "label": "Story Points",
+                          "data": [34, 42, 38, 45, 41, 37],
+                          "borderColor": "#1976d2",
+                          "backgroundColor": "#1976d233",
+                          "fill": true
+                        },
+                        {
+                          "label": "Committed",
+                          "data": [40, 40, 42, 42, 45, 45],
+                          "borderColor": "#9e9e9e",
+                          "borderWidth": 1
+                        }
+                      ]
+                    },
+                    "options": {
+                      "responsive": true,
+                      "plugins": { "legend": { "display": true, "position": "bottom" } }
+                    },
+                    "height": "250px"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "bugs-card",
+              "type": "card",
+              "props": { "title": "Bug Breakdown", "elevation": 1 },
+              "children": [
+                {
+                  "id": "bugs-chart",
+                  "type": "chart",
+                  "props": {
+                    "chartType": "pie",
+                    "data": {
+                      "labels": ["Critical", "High", "Medium", "Low"],
+                      "datasets": [
+                        {
+                          "label": "Bugs",
+                          "data": [3, 7, 12, 5],
+                          "backgroundColor": ["#d32f2f", "#f57c00", "#fbc02d", "#66bb6a"]
+                        }
+                      ]
+                    },
+                    "options": {
+                      "responsive": true,
+                      "plugins": { "legend": { "display": true, "position": "bottom" } }
+                    },
+                    "height": "250px"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "stats-card",
+              "type": "card",
+              "props": { "title": "Key Metrics", "elevation": 1 },
+              "children": [
+                {
+                  "id": "metrics-list",
+                  "type": "key-value",
+                  "props": {
+                    "layout": "vertical",
+                    "keyStyle": "muted",
+                    "divider": true,
+                    "pairs": [
+                      { "key": "Days Remaining", "value": "4" },
+                      { "key": "Open PRs", "value": "6" },
+                      { "key": "Blocked Items", "value": "2" },
+                      { "key": "Test Coverage", "value": "87.3%" },
+                      { "key": "Build Status", "value": "Passing" },
+                      { "key": "Deploy Readiness", "value": "On Track" }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "stories-section",
+          "type": "container",
+          "props": { "direction": "column", "gap": "12px" },
+          "children": [
+            {
+              "id": "stories-heading",
+              "type": "heading",
+              "props": { "content": "Sprint Stories", "level": 3 }
+            },
+            {
+              "id": "stories-table",
+              "type": "table",
+              "props": {
+                "sortable": true,
+                "columns": [
+                  { "key": "id", "label": "ID", "width": "80px" },
+                  { "key": "title", "label": "Title", "width": "300px" },
+                  { "key": "assignee", "label": "Assignee", "width": "150px" },
+                  { "key": "points", "label": "Points", "type": "number", "align": "right", "width": "80px" },
+                  { "key": "status", "label": "Status", "width": "120px" },
+                  { "key": "priority", "label": "Priority", "width": "100px" }
+                ],
+                "data": [
+                  { "id": "ALPHA-201", "title": "User authentication flow redesign", "assignee": "Alice J.", "points": 5, "status": "Done", "priority": "High" },
+                  { "id": "ALPHA-202", "title": "Dashboard performance optimization", "assignee": "David L.", "points": 3, "status": "Done", "priority": "Critical" },
+                  { "id": "ALPHA-203", "title": "API rate limiting middleware", "assignee": "Henry C.", "points": 3, "status": "In Progress", "priority": "High" },
+                  { "id": "ALPHA-204", "title": "Export functionality for reports", "assignee": "Leo T.", "points": 5, "status": "In Progress", "priority": "Medium" },
+                  { "id": "ALPHA-205", "title": "Notification system overhaul", "assignee": "Bob S.", "points": 8, "status": "In Review", "priority": "High" },
+                  { "id": "ALPHA-206", "title": "Mobile responsive tables", "assignee": "Iris P.", "points": 2, "status": "Blocked", "priority": "Medium" },
+                  { "id": "ALPHA-207", "title": "Search indexing improvements", "assignee": "Frank B.", "points": 3, "status": "To Do", "priority": "Low" }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "actions-row",
+          "type": "container",
+          "props": { "direction": "row", "gap": "12px", "justifyContent": "end" },
+          "children": [
+            {
+              "id": "export-btn",
+              "type": "button",
+              "props": { "label": "Export Report", "variant": "outline" },
+              "events": [{ "type": "click", "action": { "type": "callback", "callbackId": "exportSprintReport" } }]
+            },
+            {
+              "id": "schedule-btn",
+              "type": "button",
+              "props": { "label": "Schedule Retro", "variant": "secondary" },
+              "events": [{ "type": "click", "action": { "type": "callback", "callbackId": "scheduleRetro" } }]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

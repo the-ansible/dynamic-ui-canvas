@@ -1,0 +1,241 @@
+{
+  "title": "Account Setup Wizard",
+  "components": [
+    {
+      "id": "wizard-root",
+      "type": "container",
+      "props": { "direction": "column", "gap": "24px" },
+      "style": { "maxWidth": "640px", "margin": "0 auto" },
+      "children": [
+        {
+          "id": "wizard-heading",
+          "type": "heading",
+          "props": { "content": "Set Up Your Account", "level": 1 }
+        },
+        {
+          "id": "wizard-progress",
+          "type": "progress",
+          "props": { "value": 33, "max": 100, "variant": "info", "showLabel": true, "labelFormat": "percent", "size": "medium" }
+        },
+        {
+          "id": "wizard-steps",
+          "type": "tabs",
+          "props": {
+            "activeTab": "profile",
+            "variant": "underline",
+            "tabs": [
+              {
+                "id": "profile",
+                "label": "1. Profile",
+                "children": [
+                  {
+                    "id": "profile-section",
+                    "type": "container",
+                    "props": { "direction": "column", "gap": "16px" },
+                    "children": [
+                      {
+                        "id": "profile-alert",
+                        "type": "alert",
+                        "props": { "content": "Complete your profile to personalize your experience.", "variant": "info", "title": "Welcome!" }
+                      },
+                      {
+                        "id": "profile-form",
+                        "type": "form",
+                        "props": { "validateOnBlur": true },
+                        "children": [
+                          {
+                            "id": "profile-photo",
+                            "type": "file",
+                            "props": { "name": "avatar", "label": "Profile Photo" }
+                          },
+                          {
+                            "id": "profile-displayname",
+                            "type": "input",
+                            "props": { "name": "displayName", "label": "Display Name", "required": true, "inputType": "text", "placeholder": "How should we address you?" }
+                          },
+                          {
+                            "id": "profile-bio",
+                            "type": "textarea",
+                            "props": { "name": "bio", "label": "Bio", "placeholder": "Tell us a bit about yourself...", "rows": 3, "validation": { "maxLength": 500 } }
+                          },
+                          {
+                            "id": "profile-timezone",
+                            "type": "select",
+                            "props": {
+                              "name": "timezone",
+                              "label": "Timezone",
+                              "required": true,
+                              "options": [
+                                { "value": "America/Los_Angeles", "label": "Pacific Time (PT)" },
+                                { "value": "America/Denver", "label": "Mountain Time (MT)" },
+                                { "value": "America/Chicago", "label": "Central Time (CT)" },
+                                { "value": "America/New_York", "label": "Eastern Time (ET)" },
+                                { "value": "Europe/London", "label": "GMT / UTC" },
+                                { "value": "Europe/Berlin", "label": "Central European Time" },
+                                { "value": "Asia/Tokyo", "label": "Japan Standard Time" }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": "profile-next-btn",
+                        "type": "button",
+                        "props": { "label": "Continue to Preferences →", "variant": "primary", "size": "large" },
+                        "events": [{ "type": "click", "action": { "type": "callback", "callbackId": "wizardNext", "payload": { "step": "preferences" } } }]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "preferences",
+                "label": "2. Preferences",
+                "children": [
+                  {
+                    "id": "prefs-section",
+                    "type": "container",
+                    "props": { "direction": "column", "gap": "16px" },
+                    "children": [
+                      {
+                        "id": "prefs-heading",
+                        "type": "heading",
+                        "props": { "content": "Notification Preferences", "level": 3 }
+                      },
+                      {
+                        "id": "pref-email-notif",
+                        "type": "toggle",
+                        "props": { "name": "emailNotifications", "label": "Email Notifications", "defaultChecked": true }
+                      },
+                      {
+                        "id": "pref-push-notif",
+                        "type": "toggle",
+                        "props": { "name": "pushNotifications", "label": "Push Notifications", "defaultChecked": false }
+                      },
+                      {
+                        "id": "pref-frequency",
+                        "type": "radio",
+                        "props": {
+                          "name": "digestFrequency",
+                          "label": "Email Digest Frequency",
+                          "options": [
+                            { "value": "realtime", "label": "Real-time" },
+                            { "value": "daily", "label": "Daily digest" },
+                            { "value": "weekly", "label": "Weekly digest" }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "prefs-heading-2",
+                        "type": "heading",
+                        "props": { "content": "Display Settings", "level": 3 }
+                      },
+                      {
+                        "id": "pref-theme",
+                        "type": "radio",
+                        "props": {
+                          "name": "theme",
+                          "label": "Theme",
+                          "options": [
+                            { "value": "light", "label": "Light" },
+                            { "value": "dark", "label": "Dark" },
+                            { "value": "system", "label": "System default" }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "pref-font-size",
+                        "type": "slider",
+                        "props": { "name": "fontSize", "label": "Font Size", "min": 12, "max": 24, "step": 1, "defaultValue": 16, "showTooltip": true }
+                      },
+                      {
+                        "id": "prefs-nav",
+                        "type": "container",
+                        "props": { "direction": "row", "justifyContent": "end", "gap": "12px" },
+                        "children": [
+                          {
+                            "id": "prefs-back-btn",
+                            "type": "button",
+                            "props": { "label": "← Back", "variant": "outline" },
+                            "events": [{ "type": "click", "action": { "type": "callback", "callbackId": "wizardBack", "payload": { "step": "profile" } } }]
+                          },
+                          {
+                            "id": "prefs-next-btn",
+                            "type": "button",
+                            "props": { "label": "Continue to Review →", "variant": "primary" },
+                            "events": [{ "type": "click", "action": { "type": "callback", "callbackId": "wizardNext", "payload": { "step": "review" } } }]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "review",
+                "label": "3. Review",
+                "children": [
+                  {
+                    "id": "review-section",
+                    "type": "container",
+                    "props": { "direction": "column", "gap": "16px" },
+                    "children": [
+                      {
+                        "id": "review-heading",
+                        "type": "heading",
+                        "props": { "content": "Review Your Settings", "level": 3 }
+                      },
+                      {
+                        "id": "review-callout",
+                        "type": "callout",
+                        "props": { "content": "Please review your settings below before completing setup.", "variant": "note" }
+                      },
+                      {
+                        "id": "review-profile-kv",
+                        "type": "key-value",
+                        "props": {
+                          "layout": "horizontal",
+                          "keyStyle": "bold",
+                          "pairs": [
+                            { "key": "Display Name", "value": "(will be filled from form)" },
+                            { "key": "Timezone", "value": "(will be filled from form)" },
+                            { "key": "Email Notifications", "value": "Enabled" },
+                            { "key": "Theme", "value": "System default" }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "review-tos",
+                        "type": "checkbox",
+                        "props": { "name": "termsAccepted", "label": "I agree to the Terms of Service and Privacy Policy", "required": true }
+                      },
+                      {
+                        "id": "review-nav",
+                        "type": "container",
+                        "props": { "direction": "row", "justifyContent": "end", "gap": "12px" },
+                        "children": [
+                          {
+                            "id": "review-back-btn",
+                            "type": "button",
+                            "props": { "label": "← Back", "variant": "outline" },
+                            "events": [{ "type": "click", "action": { "type": "callback", "callbackId": "wizardBack", "payload": { "step": "preferences" } } }]
+                          },
+                          {
+                            "id": "review-finish-btn",
+                            "type": "button",
+                            "props": { "label": "Complete Setup ✓", "variant": "primary", "size": "large" },
+                            "events": [{ "type": "click", "action": { "type": "callback", "callbackId": "wizardFinish" } }]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

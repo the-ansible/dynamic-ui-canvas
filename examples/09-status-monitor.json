@@ -1,0 +1,311 @@
+{
+  "title": "System Status Monitor",
+  "components": [
+    {
+      "id": "monitor-root",
+      "type": "container",
+      "props": { "direction": "column", "gap": "20px" },
+      "children": [
+        {
+          "id": "monitor-header",
+          "type": "container",
+          "props": { "direction": "row", "justifyContent": "start", "alignItems": "center", "gap": "16px" },
+          "children": [
+            {
+              "id": "monitor-title",
+              "type": "heading",
+              "props": { "content": "System Status Monitor", "level": 1 }
+            },
+            {
+              "id": "monitor-live-badge",
+              "type": "badge",
+              "props": { "label": "LIVE", "variant": "success", "dot": true, "shape": "pill" }
+            },
+            {
+              "id": "monitor-timestamp",
+              "type": "text",
+              "props": { "content": "Last updated: Feb 19, 2026 14:32:05 UTC", "variant": "caption" },
+              "style": { "color": "#666" }
+            }
+          ]
+        },
+        {
+          "id": "overall-status",
+          "type": "alert",
+          "props": {
+            "variant": "warning",
+            "title": "Degraded Performance",
+            "content": "Database cluster experiencing elevated latency. Engineering team is investigating. ETA: 30 minutes.",
+            "dismissible": false
+          }
+        },
+        {
+          "id": "services-grid",
+          "type": "grid",
+          "props": { "columns": 2, "gap": "16px" },
+          "children": [
+            {
+              "id": "api-service",
+              "type": "card",
+              "props": { "title": "API Gateway", "elevation": 1 },
+              "children": [
+                {
+                  "id": "api-status-row",
+                  "type": "container",
+                  "props": { "direction": "column", "gap": "12px" },
+                  "children": [
+                    {
+                      "id": "api-status-badge",
+                      "type": "badge",
+                      "props": { "label": "Operational", "variant": "success", "shape": "pill" }
+                    },
+                    {
+                      "id": "api-metrics",
+                      "type": "key-value",
+                      "props": {
+                        "layout": "horizontal",
+                        "pairs": [
+                          { "key": "Uptime", "value": "99.98%" },
+                          { "key": "Avg Latency", "value": "45ms" },
+                          { "key": "Requests/min", "value": "12,450" },
+                          { "key": "Error Rate", "value": "0.02%" }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "api-latency-chart",
+                      "type": "chart",
+                      "props": {
+                        "chartType": "line",
+                        "data": {
+                          "labels": ["14:00", "14:05", "14:10", "14:15", "14:20", "14:25", "14:30"],
+                          "datasets": [
+                            {
+                              "label": "p50 Latency (ms)",
+                              "data": [42, 45, 43, 44, 46, 43, 45],
+                              "borderColor": "#388e3c",
+                              "borderWidth": 2
+                            },
+                            {
+                              "label": "p99 Latency (ms)",
+                              "data": [120, 135, 125, 130, 140, 128, 132],
+                              "borderColor": "#f57c00",
+                              "borderWidth": 2
+                            }
+                          ]
+                        },
+                        "options": {
+                          "responsive": true,
+                          "plugins": { "legend": { "display": true, "position": "bottom" } },
+                          "yAxis": { "label": "ms" }
+                        },
+                        "height": "200px"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "db-service",
+              "type": "card",
+              "props": { "title": "Database Cluster", "elevation": 1 },
+              "children": [
+                {
+                  "id": "db-status-row",
+                  "type": "container",
+                  "props": { "direction": "column", "gap": "12px" },
+                  "children": [
+                    {
+                      "id": "db-status-badge",
+                      "type": "badge",
+                      "props": { "label": "Degraded", "variant": "warning", "shape": "pill" }
+                    },
+                    {
+                      "id": "db-metrics",
+                      "type": "key-value",
+                      "props": {
+                        "layout": "horizontal",
+                        "pairs": [
+                          { "key": "Uptime", "value": "99.91%" },
+                          { "key": "Avg Latency", "value": "280ms" },
+                          { "key": "Active Connections", "value": "847/1000" },
+                          { "key": "Replication Lag", "value": "1.2s" }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "db-latency-chart",
+                      "type": "chart",
+                      "props": {
+                        "chartType": "area",
+                        "data": {
+                          "labels": ["14:00", "14:05", "14:10", "14:15", "14:20", "14:25", "14:30"],
+                          "datasets": [
+                            {
+                              "label": "Query Latency (ms)",
+                              "data": [45, 52, 85, 180, 310, 290, 280],
+                              "borderColor": "#d32f2f",
+                              "backgroundColor": "#d32f2f22",
+                              "fill": true
+                            }
+                          ]
+                        },
+                        "options": {
+                          "responsive": true,
+                          "plugins": { "legend": { "display": false } },
+                          "yAxis": { "label": "ms" }
+                        },
+                        "height": "200px"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "cache-service",
+              "type": "card",
+              "props": { "title": "Cache Layer (Redis)", "elevation": 1 },
+              "children": [
+                {
+                  "id": "cache-status-col",
+                  "type": "container",
+                  "props": { "direction": "column", "gap": "12px" },
+                  "children": [
+                    {
+                      "id": "cache-status-badge",
+                      "type": "badge",
+                      "props": { "label": "Operational", "variant": "success", "shape": "pill" }
+                    },
+                    {
+                      "id": "cache-metrics",
+                      "type": "key-value",
+                      "props": {
+                        "layout": "horizontal",
+                        "pairs": [
+                          { "key": "Hit Rate", "value": "94.7%" },
+                          { "key": "Memory Used", "value": "6.2 GB / 8 GB" },
+                          { "key": "Avg Latency", "value": "2ms" },
+                          { "key": "Evictions/min", "value": "12" }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "cache-memory-bar",
+                      "type": "progress",
+                      "props": { "value": 77.5, "max": 100, "variant": "warning", "showLabel": true, "labelFormat": "percent", "size": "small" }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "queue-service",
+              "type": "card",
+              "props": { "title": "Message Queue", "elevation": 1 },
+              "children": [
+                {
+                  "id": "queue-status-col",
+                  "type": "container",
+                  "props": { "direction": "column", "gap": "12px" },
+                  "children": [
+                    {
+                      "id": "queue-status-badge",
+                      "type": "badge",
+                      "props": { "label": "Operational", "variant": "success", "shape": "pill" }
+                    },
+                    {
+                      "id": "queue-metrics",
+                      "type": "key-value",
+                      "props": {
+                        "layout": "horizontal",
+                        "pairs": [
+                          { "key": "Messages/sec", "value": "2,340" },
+                          { "key": "Queue Depth", "value": "1,205" },
+                          { "key": "Consumer Lag", "value": "0.3s" },
+                          { "key": "Dead Letters", "value": "0" }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "queue-throughput-chart",
+                      "type": "chart",
+                      "props": {
+                        "chartType": "bar",
+                        "data": {
+                          "labels": ["14:00", "14:05", "14:10", "14:15", "14:20", "14:25", "14:30"],
+                          "datasets": [
+                            {
+                              "label": "Published",
+                              "data": [2100, 2300, 2250, 2400, 2350, 2280, 2340],
+                              "backgroundColor": "#1976d2"
+                            },
+                            {
+                              "label": "Consumed",
+                              "data": [2080, 2290, 2230, 2380, 2340, 2270, 2330],
+                              "backgroundColor": "#388e3c"
+                            }
+                          ]
+                        },
+                        "options": {
+                          "responsive": true,
+                          "plugins": { "legend": { "display": true, "position": "bottom" } }
+                        },
+                        "height": "200px"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "incidents-heading",
+          "type": "heading",
+          "props": { "content": "Recent Incidents", "level": 3 }
+        },
+        {
+          "id": "incidents-table",
+          "type": "table",
+          "props": {
+            "sortable": true,
+            "columns": [
+              { "key": "time", "label": "Time", "width": "180px" },
+              { "key": "service", "label": "Service", "width": "150px" },
+              { "key": "severity", "label": "Severity", "width": "100px" },
+              { "key": "description", "label": "Description" },
+              { "key": "status", "label": "Status", "width": "120px" }
+            ],
+            "data": [
+              { "time": "2026-02-19 14:12", "service": "Database", "severity": "Warning", "description": "Elevated query latency detected on primary node", "status": "Investigating" },
+              { "time": "2026-02-19 08:45", "service": "API Gateway", "severity": "Info", "description": "Scheduled maintenance completed successfully", "status": "Resolved" },
+              { "time": "2026-02-18 22:30", "service": "Cache", "severity": "Warning", "description": "Memory usage exceeded 90% threshold briefly", "status": "Resolved" },
+              { "time": "2026-02-18 15:10", "service": "Queue", "severity": "Error", "description": "Consumer group rebalance caused 30s processing delay", "status": "Resolved" }
+            ]
+          }
+        },
+        {
+          "id": "monitor-actions",
+          "type": "container",
+          "props": { "direction": "row", "gap": "12px" },
+          "children": [
+            {
+              "id": "refresh-btn",
+              "type": "button",
+              "props": { "label": "Refresh Now", "variant": "primary" },
+              "events": [{ "type": "click", "action": { "type": "callback", "callbackId": "refreshMonitor" } }]
+            },
+            {
+              "id": "subscribe-btn",
+              "type": "button",
+              "props": { "label": "Subscribe to Alerts", "variant": "outline" },
+              "events": [{ "type": "click", "action": { "type": "callback", "callbackId": "subscribeAlerts" } }]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

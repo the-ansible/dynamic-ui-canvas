@@ -1,0 +1,213 @@
+{
+  "title": "Application Settings",
+  "components": [
+    {
+      "id": "settings-root",
+      "type": "container",
+      "props": { "direction": "column", "gap": "20px" },
+      "style": { "maxWidth": "800px" },
+      "children": [
+        {
+          "id": "settings-heading",
+          "type": "heading",
+          "props": { "content": "Settings", "level": 1 }
+        },
+        {
+          "id": "settings-panels",
+          "type": "accordion",
+          "props": {
+            "variant": "bordered",
+            "multiple": true,
+            "panels": [
+              {
+                "id": "panel-general",
+                "label": "General",
+                "defaultExpanded": true,
+                "children": [
+                  {
+                    "id": "general-form",
+                    "type": "container",
+                    "props": { "direction": "column", "gap": "12px" },
+                    "children": [
+                      {
+                        "id": "setting-language",
+                        "type": "select",
+                        "props": {
+                          "name": "language",
+                          "label": "Language",
+                          "value": "en",
+                          "options": [
+                            { "value": "en", "label": "English" },
+                            { "value": "es", "label": "Español" },
+                            { "value": "fr", "label": "Français" },
+                            { "value": "de", "label": "Deutsch" },
+                            { "value": "ja", "label": "日本語" }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "setting-date-format",
+                        "type": "radio",
+                        "props": {
+                          "name": "dateFormat",
+                          "label": "Date Format",
+                          "options": [
+                            { "value": "mdy", "label": "MM/DD/YYYY" },
+                            { "value": "dmy", "label": "DD/MM/YYYY" },
+                            { "value": "ymd", "label": "YYYY-MM-DD" }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "setting-auto-save",
+                        "type": "toggle",
+                        "props": { "name": "autoSave", "label": "Auto-save documents", "defaultChecked": true, "helperText": "Automatically save your work every 30 seconds" }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "panel-appearance",
+                "label": "Appearance",
+                "children": [
+                  {
+                    "id": "appearance-form",
+                    "type": "container",
+                    "props": { "direction": "column", "gap": "12px" },
+                    "children": [
+                      {
+                        "id": "setting-theme",
+                        "type": "radio",
+                        "props": {
+                          "name": "theme",
+                          "label": "Theme",
+                          "options": [
+                            { "value": "light", "label": "Light" },
+                            { "value": "dark", "label": "Dark" },
+                            { "value": "system", "label": "Match system" }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "setting-font-size",
+                        "type": "slider",
+                        "props": { "name": "fontSize", "label": "Font Size", "min": 10, "max": 22, "step": 1, "defaultValue": 14, "showTooltip": true, "helperText": "Adjust the base font size for all text" }
+                      },
+                      {
+                        "id": "setting-compact",
+                        "type": "toggle",
+                        "props": { "name": "compactMode", "label": "Compact mode", "defaultChecked": false, "helperText": "Reduce spacing and padding throughout the interface" }
+                      },
+                      {
+                        "id": "setting-animations",
+                        "type": "toggle",
+                        "props": { "name": "animations", "label": "Enable animations", "defaultChecked": true, "helperText": "Toggle UI transition animations" }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "panel-privacy",
+                "label": "Privacy & Security",
+                "children": [
+                  {
+                    "id": "privacy-form",
+                    "type": "container",
+                    "props": { "direction": "column", "gap": "12px" },
+                    "children": [
+                      {
+                        "id": "setting-2fa",
+                        "type": "toggle",
+                        "props": { "name": "twoFactor", "label": "Two-factor authentication", "defaultChecked": false, "helperText": "Add an extra layer of security to your account" }
+                      },
+                      {
+                        "id": "setting-session-timeout",
+                        "type": "select",
+                        "props": {
+                          "name": "sessionTimeout",
+                          "label": "Session Timeout",
+                          "options": [
+                            { "value": "15", "label": "15 minutes" },
+                            { "value": "30", "label": "30 minutes" },
+                            { "value": "60", "label": "1 hour" },
+                            { "value": "480", "label": "8 hours" },
+                            { "value": "never", "label": "Never" }
+                          ],
+                          "helperText": "Automatically log out after inactivity"
+                        }
+                      },
+                      {
+                        "id": "setting-analytics",
+                        "type": "toggle",
+                        "props": { "name": "analytics", "label": "Usage analytics", "defaultChecked": true, "helperText": "Help us improve by sharing anonymous usage data" }
+                      },
+                      {
+                        "id": "setting-crash-reports",
+                        "type": "toggle",
+                        "props": { "name": "crashReports", "label": "Crash reports", "defaultChecked": true, "helperText": "Automatically send crash reports to our team" }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "panel-notifications",
+                "label": "Notifications",
+                "children": [
+                  {
+                    "id": "notif-form",
+                    "type": "container",
+                    "props": { "direction": "column", "gap": "12px" },
+                    "children": [
+                      {
+                        "id": "setting-email-notif",
+                        "type": "toggle",
+                        "props": { "name": "emailNotifications", "label": "Email notifications", "defaultChecked": true }
+                      },
+                      {
+                        "id": "setting-push-notif",
+                        "type": "toggle",
+                        "props": { "name": "pushNotifications", "label": "Push notifications", "defaultChecked": false }
+                      },
+                      {
+                        "id": "setting-sound",
+                        "type": "toggle",
+                        "props": { "name": "notificationSound", "label": "Notification sounds", "defaultChecked": true }
+                      },
+                      {
+                        "id": "setting-quiet-hours",
+                        "type": "checkbox",
+                        "props": { "name": "quietHours", "label": "Enable quiet hours (10 PM — 8 AM)" }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "settings-actions",
+          "type": "container",
+          "props": { "direction": "row", "justifyContent": "end", "gap": "12px" },
+          "children": [
+            {
+              "id": "settings-reset-btn",
+              "type": "button",
+              "props": { "label": "Reset to Defaults", "variant": "outline" },
+              "events": [{ "type": "click", "action": { "type": "callback", "callbackId": "resetSettings" } }]
+            },
+            {
+              "id": "settings-save-btn",
+              "type": "button",
+              "props": { "label": "Save Settings", "variant": "primary" },
+              "events": [{ "type": "click", "action": { "type": "callback", "callbackId": "saveSettings" } }]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "title": "Contact Form",
+  "components": [
+    {
+      "id": "form-container",
+      "type": "container",
+      "props": { "direction": "column", "gap": "16px" },
+      "children": [
+        {
+          "id": "form-heading",
+          "type": "heading",
+          "props": { "content": "Contact Us", "level": 2 }
+        },
+        {
+          "id": "form-description",
+          "type": "text",
+          "props": { "content": "Fill out the form below and we'll get back to you within 24 hours.", "variant": "body2" }
+        },
+        {
+          "id": "contact-form",
+          "type": "form",
+          "props": { "validateOnBlur": true },
+          "children": [
+            {
+              "id": "field-name",
+              "type": "input",
+              "props": {
+                "name": "fullName",
+                "label": "Full Name",
+                "placeholder": "John Doe",
+                "required": true,
+                "inputType": "text",
+                "validation": { "minLength": 2, "maxLength": 100 }
+              }
+            },
+            {
+              "id": "field-email",
+              "type": "input",
+              "props": {
+                "name": "email",
+                "label": "Email Address",
+                "placeholder": "john@example.com",
+                "required": true,
+                "inputType": "email",
+                "validation": { "pattern": "^[^@]+@[^@]+\\.[^@]+$", "patternMessage": "Please enter a valid email" }
+              }
+            },
+            {
+              "id": "field-phone",
+              "type": "input",
+              "props": {
+                "name": "phone",
+                "label": "Phone Number",
+                "placeholder": "+1 (555) 000-0000",
+                "inputType": "tel"
+              }
+            },
+            {
+              "id": "field-subject",
+              "type": "select",
+              "props": {
+                "name": "subject",
+                "label": "Subject",
+                "required": true,
+                "options": [
+                  { "value": "general", "label": "General Inquiry" },
+                  { "value": "support", "label": "Technical Support" },
+                  { "value": "billing", "label": "Billing Question" },
+                  { "value": "feedback", "label": "Feedback" }
+                ]
+              }
+            },
+            {
+              "id": "field-message",
+              "type": "textarea",
+              "props": {
+                "name": "message",
+                "label": "Message",
+                "placeholder": "Tell us how we can help...",
+                "required": true,
+                "rows": 5,
+                "validation": { "minLength": 10, "maxLength": 2000 }
+              }
+            },
+            {
+              "id": "field-newsletter",
+              "type": "checkbox",
+              "props": {
+                "name": "newsletter",
+                "label": "Subscribe to our newsletter"
+              }
+            },
+            {
+              "id": "submit-btn",
+              "type": "button",
+              "props": {
+                "label": "Send Message",
+                "variant": "primary",
+                "size": "large",
+                "fullWidth": true
+              },
+              "events": [
+                {
+                  "type": "click",
+                  "action": { "type": "callback", "callbackId": "submitContactForm" }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

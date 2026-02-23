@@ -1,0 +1,92 @@
+{
+  "title": "Delete Confirmation",
+  "components": [
+    {
+      "id": "dialog-root",
+      "type": "container",
+      "props": { "direction": "column", "gap": "24px", "alignItems": "center" },
+      "style": { "maxWidth": "480px", "margin": "40px auto", "padding": "32px" },
+      "children": [
+        {
+          "id": "dialog-card",
+          "type": "card",
+          "props": { "elevation": 3 },
+          "children": [
+            {
+              "id": "dialog-content",
+              "type": "container",
+              "props": { "direction": "column", "gap": "16px", "alignItems": "center" },
+              "children": [
+                {
+                  "id": "dialog-icon",
+                  "type": "alert",
+                  "props": {
+                    "variant": "error",
+                    "title": "Delete Project?",
+                    "content": "This action cannot be undone. All project files, settings, and associated data will be permanently removed.",
+                    "dismissible": false
+                  }
+                },
+                {
+                  "id": "dialog-details",
+                  "type": "card",
+                  "props": { "elevation": 0 },
+                  "style": { "backgroundColor": "#f5f5f5", "width": "100%" },
+                  "children": [
+                    {
+                      "id": "project-info",
+                      "type": "key-value",
+                      "props": {
+                        "layout": "horizontal",
+                        "keyStyle": "bold",
+                        "pairs": [
+                          { "key": "Project", "value": "Marketing Campaign Q1" },
+                          { "key": "Owner", "value": "Carol White" },
+                          { "key": "Files", "value": "127 files (3.4 GB)" },
+                          { "key": "Created", "value": "November 15, 2025" },
+                          { "key": "Last Modified", "value": "February 18, 2026" }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "dialog-confirm-input",
+                  "type": "input",
+                  "props": {
+                    "name": "confirmText",
+                    "label": "Type the project name to confirm",
+                    "placeholder": "Marketing Campaign Q1",
+                    "required": true,
+                    "inputType": "text",
+                    "helperText": "This is a destructive action and requires confirmation"
+                  }
+                },
+                {
+                  "id": "dialog-buttons",
+                  "type": "container",
+                  "props": { "direction": "row", "gap": "12px", "justifyContent": "end" },
+                  "style": { "width": "100%" },
+                  "children": [
+                    {
+                      "id": "dialog-cancel-btn",
+                      "type": "button",
+                      "props": { "label": "Cancel", "variant": "outline", "size": "large" },
+                      "events": [{ "type": "click", "action": { "type": "callback", "callbackId": "cancelDelete" } }]
+                    },
+                    {
+                      "id": "dialog-delete-btn",
+                      "type": "button",
+                      "props": { "label": "Delete Project", "variant": "danger", "size": "large", "disabled": true },
+                      "events": [{ "type": "click", "action": { "type": "callback", "callbackId": "confirmDelete", "payload": { "projectId": "mkt-q1-2026" } } }]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

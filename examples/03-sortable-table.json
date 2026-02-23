@@ -1,0 +1,116 @@
+{
+  "title": "Employee Directory",
+  "components": [
+    {
+      "id": "table-root",
+      "type": "container",
+      "props": { "direction": "column", "gap": "16px" },
+      "children": [
+        {
+          "id": "table-header",
+          "type": "container",
+          "props": { "direction": "row", "justifyContent": "start", "alignItems": "center", "gap": "16px" },
+          "children": [
+            {
+              "id": "table-title",
+              "type": "heading",
+              "props": { "content": "Employee Directory", "level": 2 }
+            },
+            {
+              "id": "employee-count",
+              "type": "badge",
+              "props": { "label": "47 employees", "variant": "info", "shape": "pill" }
+            }
+          ]
+        },
+        {
+          "id": "search-filter-row",
+          "type": "container",
+          "props": { "direction": "row", "gap": "12px", "alignItems": "end" },
+          "children": [
+            {
+              "id": "search-input",
+              "type": "input",
+              "props": {
+                "name": "search",
+                "label": "Search",
+                "placeholder": "Search by name or email...",
+                "inputType": "text"
+              },
+              "style": { "width": "300px" }
+            },
+            {
+              "id": "dept-filter",
+              "type": "select",
+              "props": {
+                "name": "department",
+                "label": "Department",
+                "options": [
+                  { "value": "all", "label": "All Departments" },
+                  { "value": "engineering", "label": "Engineering" },
+                  { "value": "design", "label": "Design" },
+                  { "value": "marketing", "label": "Marketing" },
+                  { "value": "sales", "label": "Sales" },
+                  { "value": "hr", "label": "Human Resources" }
+                ]
+              }
+            },
+            {
+              "id": "status-filter",
+              "type": "select",
+              "props": {
+                "name": "status",
+                "label": "Status",
+                "options": [
+                  { "value": "all", "label": "All Statuses" },
+                  { "value": "active", "label": "Active" },
+                  { "value": "on-leave", "label": "On Leave" },
+                  { "value": "remote", "label": "Remote" }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "employee-table",
+          "type": "table",
+          "props": {
+            "sortable": true,
+            "filterable": true,
+            "paginated": true,
+            "pageSize": 10,
+            "columns": [
+              { "key": "name", "label": "Name", "width": "200px" },
+              { "key": "email", "label": "Email", "width": "250px" },
+              { "key": "department", "label": "Department", "width": "150px" },
+              { "key": "role", "label": "Role", "width": "180px" },
+              { "key": "startDate", "label": "Start Date", "type": "date", "width": "120px" },
+              { "key": "salary", "label": "Salary", "type": "number", "align": "right", "width": "120px" },
+              { "key": "status", "label": "Status", "width": "100px" }
+            ],
+            "data": [
+              { "name": "Alice Johnson", "email": "alice@company.com", "department": "Engineering", "role": "Senior Engineer", "startDate": "2021-03-15", "salary": 145000, "status": "Active" },
+              { "name": "Bob Smith", "email": "bob@company.com", "department": "Design", "role": "Lead Designer", "startDate": "2020-07-01", "salary": 130000, "status": "Active" },
+              { "name": "Carol White", "email": "carol@company.com", "department": "Marketing", "role": "Marketing Manager", "startDate": "2019-11-20", "salary": 120000, "status": "Remote" },
+              { "name": "David Lee", "email": "david@company.com", "department": "Engineering", "role": "Staff Engineer", "startDate": "2018-01-10", "salary": 175000, "status": "Active" },
+              { "name": "Eva Martinez", "email": "eva@company.com", "department": "Sales", "role": "Account Executive", "startDate": "2022-06-01", "salary": 95000, "status": "Active" },
+              { "name": "Frank Brown", "email": "frank@company.com", "department": "Engineering", "role": "Junior Engineer", "startDate": "2024-01-15", "salary": 85000, "status": "Active" },
+              { "name": "Grace Kim", "email": "grace@company.com", "department": "HR", "role": "HR Director", "startDate": "2017-05-20", "salary": 155000, "status": "On Leave" },
+              { "name": "Henry Chen", "email": "henry@company.com", "department": "Engineering", "role": "DevOps Engineer", "startDate": "2021-09-01", "salary": 140000, "status": "Remote" },
+              { "name": "Iris Patel", "email": "iris@company.com", "department": "Design", "role": "UX Researcher", "startDate": "2023-02-14", "salary": 110000, "status": "Active" },
+              { "name": "Jack Wilson", "email": "jack@company.com", "department": "Marketing", "role": "Content Strategist", "startDate": "2022-08-01", "salary": 90000, "status": "Active" },
+              { "name": "Karen Davis", "email": "karen@company.com", "department": "Sales", "role": "Sales Director", "startDate": "2016-12-01", "salary": 165000, "status": "Active" },
+              { "name": "Leo Tanaka", "email": "leo@company.com", "department": "Engineering", "role": "Frontend Engineer", "startDate": "2023-04-10", "salary": 125000, "status": "Active" }
+            ]
+          }
+        },
+        {
+          "id": "table-footer",
+          "type": "text",
+          "props": { "content": "Showing 12 of 47 employees. Click column headers to sort.", "variant": "caption" },
+          "style": { "color": "#666" }
+        }
+      ]
+    }
+  ]
+}
