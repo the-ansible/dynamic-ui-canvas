@@ -46,13 +46,35 @@ wsManager.setActionHandler(async (payload) => {
     throw new Error(`Canvas not found: ${canvasId}`);
   }
 
-  return stateEngine.applyAction(
+  const eventId = await stateEngine.applyAction(
     canvasId,
     componentId,
     eventType,
     value,
     metadata as Record<string, unknown> | undefined
   );
+
+  // Broadcast the action event to all WebSocket subscribers (mirrors REST POST /actions behavior)
+  const eventResult = await db.query<{
+    id: string;
+    canvas_id: string;
+    event_type: string;
+    payload: object;
+    created_at: string;
+  }>(
+    `SELECT id, canvas_id, event_type, payload, created_at FROM canvas.canvas_events WHERE id = $1`,
+    [eventId]
+  );
+  const event = eventResult.rows[0];
+  if (event) {
+    wsManager.broadcastCanvasUpdate(canvasId, {
+      event,
+      componentId,
+      ...(value !== undefined ? { value } : {}),
+    });
+  }
+
+  return eventId;
 });
 
 // Canvas CRUD + actions routes (with WebSocket manager for real-time broadcast)
