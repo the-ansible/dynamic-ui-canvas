@@ -1,6 +1,6 @@
 {
   "name": "dynamic-ui-canvas",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Canvas API Server for Jane's Dynamic UI system — serves interactive UI components defined by JSON descriptors",
   "type": "module",
   "scripts": {
